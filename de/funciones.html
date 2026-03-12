@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERKO_ | Funktionen</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="alternate" hreflang="es" href="https://aerko.app/" />
+    <link rel="alternate" hreflang="en" href="https://aerko.app/en/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://aerko.app/pt-br/" />
+    <link rel="alternate" hreflang="fr" href="https://aerko.app/fr/" />
+    <link rel="alternate" hreflang="de" href="https://aerko.app/de/" />
+    <link rel="alternate" hreflang="x-default" href="https://aerko.app/" />
+</head>
+
+<body>
+    <div class="layout-wrapper">
+        <header class="header">
+            <div class="header__logo-container">
+                <a href="/"><img src="/assets/logo.svg" alt="AERKO_" class="logo"></a>
+            </div>
+            <div class="header__filler"></div>
+            <nav class="header__nav">
+                <a href="/manifiesto.html" class="btn-nav">MANIFEST</a>
+                <a href="/funciones.html" class="btn-nav">FUNKTIONEN</a>
+                <a href="https://github.com/SrPakura/AERKO_PWA" class="btn-nav" target="_blank" rel="noopener">GITHUB</a>
+                
+                <a href="https://aerko.app" class="btn-cta green desktop-cta">AERKO_TESTEN</a>
+                <button class="btn-cta green mobile-menu-btn">MENÜ</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="docs-layout">
+                
+                <aside class="sidebar">
+                    <div class="sidebar__group">
+                        <div class="sidebar__title-box">
+                            <h3 class="h3 text-white">// Versionen</h3>
+                        </div>
+                        <a href="#" class="sidebar__link active">
+                            <span class="p-large">> PWA-V1</span>
+                        </a>
+                        <div class="sidebar__link disabled">
+                            <span class="p-large">> PWA-V2 (demnächst)</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar__group group-funciones">
+                        <div class="sidebar__title-box">
+                            <h3 class="h3 text-white">/// Funktionen</h3>
+                        </div>
+                        <a href="#" class="sidebar__link tab-btn active-tab" data-target="tab-sistema">
+                            <span class="p-large">> System</span>
+                        </a>
+                        <a href="#" class="sidebar__link tab-btn" data-target="tab-nutricion">
+                            <span class="p-large">> Ernährung</span>
+                        </a>
+                        <a href="#" class="sidebar__link tab-btn" data-target="tab-entrenamiento">
+                            <span class="p-large">> Training</span>
+                        </a>
+                        <a href="#" class="sidebar__link tab-btn" data-target="tab-progreso">
+                            <span class="p-large">> Fortschritt</span>
+                        </a>
+                    </div>
+                </aside>
+
+                <section class="explorer">
+                    
+                    <div class="explorer__content active" id="tab-sistema">
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">1. "Zero Cloud" Architektur (100% Offline-First)</h2>
+                            <p class="p-large text-white">Keine Bridge-Server, kein Cloud-Bullshit, keine monatlichen Abos, um unsere AWS-Rechnung zu bezahlen. Das gesamte System läuft nativ auf deinem Gerät über IndexedDB. Wenn dir mitten im Gym oder in irgendeinem Keller das Netz abkratzt, juckt das die App nicht im Geringsten: Sie läuft zu 100% weiter.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">2. Paranoide Militär-Grade Kryptographie</h2>
+                            <p class="p-large text-white">Wir schützen deine Daten, als wären sie pures Gold. Wir nutzen native AES-GCM 256-Bit Verschlüsselung (Web Crypto API). Dein PIN durchläuft 100.000 mathematische Iterationen (PBKDF2) gemischt mit einem einzigartigen Salt, um einen Masterkey zu schmieden. Dieser Schlüssel existiert nur im RAM und zerstört sich beim Beenden selbst. Zudem nutzen wir ein "Auth Canary" System, um deinen PIN blind zu validieren, ohne auch nur ein Byte echter Daten preiszugeben. Wenn du deinen PIN vergisst, verabschiede dich von deinen Daten. Wir sind nicht deine Babysitter.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">3. Müllfreier "Vanilla" Stack</h2>
+                            <p class="p-large text-white">Kein React, kein Angular, keine toxischen Abhängigkeiten, die hunderte Megabytes wiegen. Die App ist mit purem, rohem Code gebaut – ohne Frameworks, strukturiert in Native Web Components und Shadow DOM. Sofortige Ladezeiten, maximale Performance und dein Akku bleibt verschont. Der harte Weg, aber der einzig richtige.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">4. Universelle Native Installation (PWA)</h2>
+                            <p class="p-large text-white">Ob es Tim Cook nun passt oder nicht, Aerko_ braucht keine Mittelsmänner. Es wurde von Grund auf dafür entwickelt, nativ auf deinem Handy (iOS oder Android) direkt aus dem Browser installiert zu werden. Vollbild, keine hässlichen Suchleisten, 100% deins.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">5. Granularer Anti-"Vendor-Lock" Export</h2>
+                            <p class="p-large text-white">Wenn du dich entscheidest zu gehen (was ich stark bezweifle), nimmst du deine sauberen Daten im .json-Format mit. Wenn die Sicherheit aktiviert ist, entschlüsselt das System die Payload direkt in den RAM, einzig und allein, um die Datei zu generieren, und hält deine lokale Datenbank die ganze Zeit über 100% kugelsicher. Wir nehmen hier niemandes Daten als Geisel; wenn eine App dich mit Vendor-Lock einsperrt, solltest du sie bis auf die Grundmauern niederbrennen.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">6. Interaktive Persönlichkeiten</h2>
+                            <p class="p-large text-white">Eine App, die mit dir wie ein generischer Firmen-Bot redet? Langweilig. Aerko_ hat drei integrierte "Persönlichkeiten": Default-Modus (klassisch, trocken und direkt), Zen-Modus (sanft und ohne Druck, perfekt, um Essstörungen zu vermeiden) und das Kronjuwel: Tsundere-Modus. Letzterer bietet maximale Feindseligkeit, schwarzen Humor und ständige Demütigung, jedes Mal, wenn du es vermasselst oder das Training schwänzt. Wenn du dich angegriffen fühlst, ist das dein eigenes verdammtes Problem.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">7. Universelle Plattform-Migration</h2>
+                            <p class="p-large text-white">Kommst du von Hevy, Strong, Lyfta, Apple Health, Google Fit oder Samsung Health? Komm rein. Wir haben native Parser programmiert, die darauf ausgelegt sind, Jahre deiner Trainingshistorie und Biometrie zu extrahieren, zu bereinigen und direkt in Aerko_ zu injizieren, ohne dass auch nur ein einziger Lift verloren geht. Das System integriert alles on the fly aus deinen .zip-Dateien.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">8. Mehrsprachiger Support mit Smart Fallback</h2>
+                            <p class="p-large text-white">Die App ist nativ auf Spanisch und übersetzt ins Englische, Portugiesische, Deutsche und Französische. Unsere Sprach-Engine verfügt über dynamisches Laden und einen kugelsicheren Fallback: Wenn du versuchst, eine Sprache zu nutzen, die den Tsundere- oder Zen-Modus nicht unterstützt, lädt das System automatisch die Texte des Default-Modus, während die volle Funktionalität erhalten bleibt. Pure Effizienz.</p>
+                        </article>
+                    </div>
+
+                    <div class="explorer__content" id="tab-nutricion">
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">1. Wissenschaftlicher Wizard & "Gott-Modus"</h2>
+                            <p class="p-large text-white">Vergiss diese "magischen" Internet-Rechner. Wir nutzen die originale Harris-Benedict (1984) Formel für deinen Grundumsatz und wissenschaftliche ISSN-Verhältnisse, um deine Makros auf den Punkt zu bringen. Das System wendet eine transversale reaktive Neuberechnung an, wenn sich dein Gewicht ändert. Und wenn du denkst, du bist schlauer als der Algorithmus, aktivier den "Gott-Modus" und trag deine Daten manuell ein.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">2. Nativer Scanner & Hybride Datenbank</h2>
+                            <p class="p-large text-white">Schluss mit der manuellen Suche nach Lebensmitteln wie ein Bauer. Wir haben einen nativen Barcode-Scanner integriert, der direkt von deinem Client aus die Open Food Facts API angreift. Null Bridge-Server, null Telemetrie. Außerdem hast du eine minutiös kuratierte hybride lokale Datenbank, damit du nicht Sklave deiner Internetverbindung bist.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">3. Modulare Ernährung: Feste & Variable Grammaturen</h2>
+                            <p class="p-large text-white">Verwalte Lebensmittelgruppen und gestalte deine Basis-Diäten. Du kannst feste Gewichte für das zuweisen, was du jeden verdammten Tag exakt gleich isst, oder variable Gewichte für das, was du spontan entscheidest. Mach dir einmal die Mühe, es einzurichten, und vergiss es für den Rest des Monats.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">4. Smart Checks & Adaptives Visuelles Dashboard</h2>
+                            <p class="p-large text-white">Unser Smart Checks Flow bietet dir ein reibungsloses tägliches Tracking: Log dich ein, hake deine vorkonfigurierten Mahlzeiten ab und fertig. Dein gesamter Kalorienfortschritt wird in einem adaptiven visuellen Dashboard gerendert, das dir in Echtzeit sagt, wie viel Spielraum du noch hast.</p>
+                        </article>
+                    </div>
+
+                    <div class="explorer__content" id="tab-entrenamiento">
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">1. Modularer Planer & Smart Flow</h2>
+                            <p class="p-large text-white">Entwirf deine Routine nur ein einziges Mal. Im Gym übernimmt die Smart Flow Engine die Kontrolle: Du spulst dein Training ohne Reibungsverluste ab, loggst Daten on the fly und nutzt native Timer, ohne die App zu verlassen. Du musst nur die schweren Kreise heben; wir erledigen die Bürokratie.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">2. Prädiktive Last-Engine & Multikonditionales 1RM</h2>
+                            <p class="p-large text-white">Die App analysiert deine Ermüdungsmuster und Mesozyklen, um dir genau zu sagen, welches Gewicht du in deiner nächsten Session bewegen sollst. Wir setzen dynamisch Brzycki, Epley oder Lombardi Formeln ein, abhängig von deinen Wiederholungsbereichen. Pure Mathematik, angewandt auf Eisen.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">3. Wissenschaftliche Volumenanalyse & Dysbalancen</h2>
+                            <p class="p-large text-white">Wir gleichen deine effektiven Sätze mit einer anatomischen Datenbank ab, um deine Anstrengung in echten Schwellenwerten einzuordnen: MV, MEV, MAV und MRV. Das System erkennt automatisch Dysbalancen nach Muskelköpfen. Wenn du den Leg Day skippst, werden wir es dir direkt ins Gesicht reiben.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">4. Vision Lab: KI-Biomechanik</h2>
+                            <p class="p-large text-white">Nimm deine Lifts auf und unsere KI wird deine Technik zerlegen, indem sie ROM, Hantelpfad und Sticking Points misst. Wir nutzen asynchrone "Ping-Pong" Optimierung mit dynamischen FPS und mathematischen EMA-Filtern, um deine CPU und deinen Akku zu schonen, während wir millimetergenaue Präzision erreichen.</p>
+                        </article>
+                    </div>
+
+                    <div class="explorer__content" id="tab-progreso">
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">1. Anti-Obsession Cooldown & Klinische Biometrie</h2>
+                            <p class="p-large text-white">Wir haben einen dynamischen Tracking-Cooldown implementiert (gekoppelt an deine aktive Persönlichkeit), um deine mentale Gesundheit zu schützen und Müll-Metriken herauszufiltern. Erfasse Gewicht, Umfangsmessungen und millimetergenaue Hautfalten nur dann, wenn es auch wirklich Sinn macht.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">2. Wissenschaftlicher Rechner für Körperzusammensetzung</h2>
+                            <p class="p-large text-white">Schmeiß deine "smarte" Waage in den Müll. Wenn du dein echtes Körperfett wissen willst, benutz einen Caliper. Unsere Mathe-Engine nutzt Jackson-Pollock Formeln kombiniert mit der Siri-Gleichung, um deine wahre Körperdichte zu ermitteln. Null magische Schätzungen.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">3. Pure Client-Side Dashboards (Null Telemetrie)</h2>
+                            <p class="p-large text-white">Heatmaps, Muskelvolumen-Radare, e1RM-Kurven... Alles wird rein auf deinem Gerät via &lt;canvas&gt; gerendert. Keine Aufrufe an externe Server, kein Daten-Tracking. Dein Fortschritt gehört dir und sonst niemandem.</p>
+                        </article>
+                        <article class="explorer__block">
+                            <h2 class="h2 text-green">4. Aerko_ Wrapped: Das Anti-Wrapped</h2>
+                            <p class="p-large text-white">Einmal alle drei Monate rendert das System ein visuelles Poster mit deinen Kraft-Meilensteinen (und ein paar Beleidigungen, wenn du den Tsundere-Modus nutzt), das du herunterladen kannst, ohne Datenvolumen zu verschwenden. Teil es, wenn du willst, und dann geh wieder trainieren. Genau die richtige Dosis an Flexing.</p>
+                        </article>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__col">
+                <h3 class="h3 text-green">GITHUB_REPOS<br>&nbsp;</h3>
+                <div class="footer__links p-regular">
+                    <a href="https://github.com/SrPakura/Aerko_Landing" class="text-white underline-hover">Landing_Code</a>
+                    <a href="https://github.com/SrPakura/AERKO_PWA" class="text-white underline-hover">Aerko_PWA</a>
+                </div>
+            </div>
+            <div class="footer__col">
+                <h3 class="h3 text-green">REDDIT<br>&nbsp;</h3>
+                <div class="footer__links p-regular">
+                    <a href="https://www.reddit.com/r/aerko_/" class="text-white underline-hover">Community</a>
+                    <a href="https://www.reddit.com/user/SrPakura/" class="text-white underline-hover">SrPakura</a>
+                </div>
+            </div>
+            <div class="footer__col">
+                <h3 class="h3 text-green">SPRACHE<br>&nbsp;</h3>
+                <div class="footer__links p-regular" style="display: flex; flex-direction: row; gap: 16px; flex-wrap: wrap;">
+                    <a href="/" class="text-white underline-hover text-green">ES</a>
+                    <a href="/en/" class="text-white underline-hover">EN</a>
+                    <a href="/pt-br/" class="text-white underline-hover">PT</a>
+                    <a href="/de/" class="text-white underline-hover">DE</a>
+                    <a href="/fr/" class="text-white underline-hover">FR</a>
+                </div>
+            </div>
+            <div class="footer__author">
+                <p class="p-large text-green">Entwickelt von @SrPakura</p>
+            </div>
+        </footer>
+
+        <div class="mobile-overlay" id="mobileMenu">
+            <div class="mobile-backdrop" id="menuBackdrop"></div>
+            <aside class="mobile-panel">
+                <nav class="mobile-links">
+                    <a href="https://aerko.app" class="menu-link outline-green">Aerko_ testen</a>
+                    <a href="/manifiesto.html" class="menu-link outline-white">Manifest</a>
+                    <a href="/funciones.html" class="menu-link outline-white">Funktionen</a>
+                    <a href="https://github.com/SrPakura/AERKO_PWA" class="menu-link outline-white" target="_blank" rel="noopener">Github</a>
+                </nav>
+            </aside>
+        </div>
+    </div>
+    
+    <script src="/js/main.js"></script>
+</body>
+</html>

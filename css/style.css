@@ -1,0 +1,901 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+  --Blanco: #FFF;
+  --Blanco-Hover: #F2F1F4;
+  --Negro_Suave: #1A1A1A;
+  --Negro_Suave-Hover: #2F2F2F;
+  --Verde_Acido: #CCFF00;
+  --Verde_Acido-Hover: #DFFF4F;
+  --border-style: 1px solid var(--Blanco);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--Negro_Suave);
+  color: var(--Blanco);
+  display: flex;
+  justify-content: center; /* Centra el layout en pantallas > 1440px */
+  overflow-x: hidden;
+}
+
+/* Tipografía Utility Classes */
+.h0 { font: 700 96px/100% 'Clash Display', sans-serif; letter-spacing: -0.96px; }
+.h1 { font: 700 64px/110% 'Clash Display', sans-serif; letter-spacing: -0.64px; }
+.h2 { font: 700 48px/120% 'Clash Display', sans-serif; letter-spacing: -0.48px; }
+.h3 { font: 600 32px/120% 'Clash Display', sans-serif; }
+.p-large { font: 400 20px/150% 'JetBrains Mono', monospace; }
+.p-regular { font: 400 16px/150% 'JetBrains Mono', monospace; }
+
+.text-green { color: var(--Verde_Acido); }
+.text-white { color: var(--Blanco); }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.uppercase { text-transform: uppercase; }
+.underline { text-decoration: underline; text-underline-offset: 4px; }
+.underline-hover:hover { text-decoration: underline; text-underline-offset: 4px; }
+a { text-decoration: none; }
+
+/* =========================================
+   LAYOUT PRINCIPAL
+   ========================================= */
+.layout-wrapper {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--Negro_Suave);
+}
+
+/* =========================================
+   BOTONES
+   ========================================= */
+.btn-cta, .btn-nav {
+  font: 500 16px/100% 'JetBrains Mono', monospace;
+  padding: 24px 32px; /* Adaptado al padding 24px del header para mantener altura */
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cta.white {
+  background: var(--Blanco);
+  color: var(--Negro_Suave);
+}
+.btn-cta.white:hover { background: var(--Blanco-Hover); color: var(--Negro_Suave-Hover); border-color: var(--Negro_Suave-Hover); }
+.btn-cta.white:active { background: var(--Negro_Suave); color: var(--Blanco); border-color: var(--Blanco); }
+
+.btn-cta.green {
+  background: var(--Verde_Acido);
+  color: var(--Negro_Suave);
+}
+.btn-cta.green:hover { background: var(--Verde_Acido-Hover); color: var(--Negro_Suave-Hover); border-color: var(--Negro_Suave-Hover); }
+
+.btn-cta.green:active { background: var(--Negro_Suave); color: var(--Verde_Acido); border-color: var(--Verde_Acido); }
+
+/* =========================================
+   HEADER
+   ========================================= */
+.header {
+  display: flex;
+  width: 100%;
+  height: 72px;
+  justify-content: space-between;
+  align-items: stretch;
+  background: var(--Negro_Suave);
+  top: 0;
+  z-index: 100; /* El rey de la colina. Nada pasa por encima de él */
+}
+
+.header__logo-container {
+  padding: 24px;
+  border: var(--border-style);
+  display: flex;
+  align-items: center;
+}
+
+.header__filler {
+  flex: 1;
+  border-top: var(--border-style);
+  border-bottom: var(--border-style);
+}
+
+.header__nav {
+  display: flex;
+  align-items: stretch;
+}
+
+.btn-nav {
+  background: var(--Negro_Suave);
+  color: var(--Blanco);
+  border: var(--border-style);
+  margin-left: -1px; /* Solapa bordes dobles */
+}
+.btn-nav:hover { background: var(--Negro_Suave-Hover); }
+
+.logo {
+  width: 128px;
+  height: 24px;
+  display: block; /* Evita márgenes fantasma debajo de la imagen */
+}
+
+.mobile-menu-btn {
+  display: none; /* Oculto en PC */
+}
+
+/* =========================================
+   MARQUEE
+   ========================================= */
+.marquee {
+  width: 100%;
+  padding: 16px 0; /* Un poco más de aire vertical */
+  border-top: var(--border-style);
+  border-bottom: var(--border-style);
+  overflow: hidden; /* Oculta el clon que sale por la derecha */
+  background: var(--Negro_Suave);
+  display: flex; /* Necesario para alinear el track */
+}
+
+.marquee__track {
+  display: flex; /* Alinea los dos bloques <p> horizontalmente */
+  width: max-content; /* Fuerza al contenedor a medir la suma de los dos textos */
+  animation: marqueeScroll 30s linear infinite; /* Un poco más lento para que se lea bien */
+}
+
+.marquee__track p {
+  /* ¡ESTA ES LA LÍNEA MÁGICA QUE FALTABA! */
+  white-space: nowrap; /* Prohibido hacer saltos de línea, el texto se queda en una fila */
+  
+  padding-right: 50px; /* Espacio de separación entre el final del texto y el principio del clon */
+  box-sizing: content-box; /* Asegura que el padding se sume al ancho total */
+}
+
+/* Estado hover para pausar, por si el usuario quiere leer algo específico */
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Se mueve exactamente la mitad, haciendo el loop invisible */
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+.hero {
+  display: flex;
+  width: 100%;
+  gap: -1px;
+}
+
+.hero__left {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  border: var(--border-style);
+}
+
+.hero__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero__subtitle {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 620px;
+}
+
+.vertical-bar {
+  width: 4px;
+  height: 120px;
+  background: var(--Blanco);
+  flex-shrink: 0;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.hero__right {
+  width: 504px; /* Ocupa el resto del espacio aprox */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: var(--border-style);
+  background: var(--Negro_Suave-Hover);
+}
+
+.hero__specs-header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero__specs-table {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  margin-top: 32px;
+}
+
+/* =========================================
+   Pequeño parche
+   ========================================= */
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* <-- Esto restaura el orden en el universo */
+  width: 100%;
+}
+
+/* =========================================
+   MANIFIESTO
+   ========================================= */
+.manifiesto { display: flex; flex-direction: column; gap: 16px; }
+
+.manifiesto__top {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.manifiesto__title {
+  padding: 24px;
+  border: var(--border-style);
+  display: flex;
+  align-items: flex-start;
+  flex: 0 0 auto;
+}
+
+.manifiesto__content {
+  flex: 1;
+  padding: 24px;
+  border: var(--border-style);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.manifiesto__bottom {
+  padding: 24px;
+  border: var(--border-style);
+  width: 100%;
+}
+
+/* =========================================
+   FUNCIONES (BENTO GRID)
+   ========================================= */
+.funciones { display: flex; flex-direction: column; gap: 16px; }
+
+.funciones__header, .funciones__footer {
+  padding: 24px;
+  border: var(--border-style);
+  width: 100%;
+}
+
+.bento-grid {
+  display: grid;
+  gap: 16px;
+  /* Configuración del grid: 8 columnas, 5 filas (basado en el gap y proporciones) */
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, minmax(166px, auto));
+}
+
+.bento-item {
+  padding: 24px;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-import { 
+  grid-row: 1 / span 5; 
+  grid-column: 1 / span 2; 
+  align-items: center; 
+  gap: 48px; 
+  height: 100%;
+}
+.bento-zen { 
+  grid-row: 1 / span 2; 
+  grid-column: 3 / span 2; 
+  justify-content: space-between; 
+}
+.bento-friction { 
+  grid-row: 1 / span 2; 
+  grid-column: 5 / span 4; 
+  justify-content: space-between; 
+}
+.bento-analysis { 
+  grid-row: 3 / span 3; 
+  grid-column: 3 / span 4; 
+  justify-content: space-between; 
+}
+.bento-overload { 
+  grid-row: 3 / span 3; 
+  grid-column: 7 / span 2; 
+  justify-content: space-between; 
+}
+
+.import-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  flex: 1 0 0;
+  justify-items: center; 
+  align-items: center;
+}
+.import-grid img {
+  width: 96px;  
+  height: 96px; 
+  object-fit: contain;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+  display: flex;
+  padding: 48px 24px;
+  gap: 64px;
+  border: var(--border-style);
+  border-top: 8px solid var(--Blanco);
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 245px;
+}
+
+.footer__links { display: flex; flex-direction: column; gap: 8px; }
+
+.footer__author {
+  flex: 1 0 0;
+  display: flex;
+  justify-content: center; /* <-- ¡Al centro, como debe ser! */
+  align-items: center;
+  align-self: stretch;
+}
+
+/* =========================================
+   MEDIA QUERIES - MOBILE (<= 1024px)
+   ========================================= */
+@media (max-width: 1024px) {
+  .layout-wrapper { gap: 24px; }
+  
+  /* Ajuste tipográfico base móvil */
+  .h0 { font-size: 56px; letter-spacing: -0.56px; }
+  .h1 { font-size: 40px; letter-spacing: -0.40px; line-height: 110%; }
+  .h2 { font-size: 32px; letter-spacing: -0.32px; line-height: 120%; }
+  .h3 { font-size: 24px; }
+  .p-large { font-size: 18px; }
+  
+  .header__filler, .btn-nav, .desktop-cta { 
+    display: none; 
+  }
+  
+  .header { 
+    border: none; 
+    align-items: stretch; /* <-- ¡Vuelve el stretch para que el botón ocupe el 100% de la altura! */
+    padding: 0; 
+  }
+  
+  .header__logo-container { 
+    border: none; 
+    padding: 0 0 0 24px; /* Quitamos padding, que Flexbox haga el trabajo sucio */
+    display: flex;
+    align-items: center; /* Centramos el logo verticalmente */
+  }
+  
+  .mobile-menu-btn { 
+    display: inline-flex;
+    align-items: center; /* Centramos el texto "MENU" verticalmente dentro de su ladrillo */
+    justify-content: center;
+    padding: 0 32px; /* Solo padding lateral, la altura se la da el stretch del padre */
+  }
+
+  /* Hero */
+  .hero { flex-direction: column; gap: 24px; }
+  .hero__left, .hero__right { width: 100%; padding: 16px; }
+  .hero__buttons { flex-direction: column; width: 100%; }
+  .hero__buttons .btn-cta { width: 100%; }
+
+  /* Manifiesto */
+  .manifiesto__top { flex-direction: column; gap: 24px; }
+  .manifiesto__title, .manifiesto__content { width: 100%; }
+
+  /* Funciones: Carrusel Scroll Snap */
+  .bento-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 16px; /* Espacio para scrollbar si aparece */
+  }
+  
+  .bento-item {
+    min-width: 85vw; /* Ocupa casi todo el ancho, dejando asomar el siguiente */
+    scroll-snap-align: center;
+    border: var(--border-style);
+  }
+  
+  /* Footer */
+  .footer { flex-direction: column; gap: 48px; padding: 32px 16px; }
+  .footer__author { justify-content: flex-start; }
+}
+
+
+
+/* =========================================
+   PÁGINA: MANIFIESTO
+   ========================================= */
+.manifesto-layout {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  align-items: stretch; /* Asegura que ambas columnas midan lo mismo de alto */
+}
+
+.manifesto-left {
+  flex: 1.3; /* Hace que la columna izquierda sea ligeramente más ancha */
+  padding: 24px;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  display: flex;
+  flex-direction: column;
+}
+
+.manifesto-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.manifesto-block {
+  padding: 24px;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  flex: 1; /* Hace que ambos bloques de la derecha se repartan el 50% de la altura cada uno */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tipografía específica de esta página */
+.manifesto-title {
+  margin-bottom: 48px; /* Espacio grande entre el título y el texto */
+  overflow-wrap: anywhere;
+  word-break: break-word; 
+}
+
+.manifesto-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Separa los párrafos entre sí */
+}
+
+/* =========================================
+   MEDIA QUERIES - MOBILE (<= 1024px)
+   ========================================= */
+@media (max-width: 1024px) {
+  /* Añade esto dentro de tu media query existente para móvil */
+  .manifesto-layout {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .manifesto-left, .manifesto-block {
+    padding: 24px 16px; /* Adaptamos el padding lateral para móvil */
+  }
+}
+
+/* =========================================
+   MENÚ MÓVIL OVERLAY (Si estás cotilleando esto, si hijo si, se me ha olvidado meterlo antes...)
+   ========================================= */
+
+.mobile-overlay {
+  position: fixed; /* Anclado a la pantalla completa del móvil */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 90; /* 90 es menor que 100. El menú pasará mágicamente por debajo del Header */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  justify-content: flex-end; /* Empuja el panel negro hacia la derecha */
+}
+
+.mobile-overlay.is-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobile-backdrop {
+  position: absolute; /* Cubre todo el fondo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.4);
+  cursor: pointer;
+}
+
+.mobile-panel {
+  position: relative; /* Para quedar por encima del backdrop oscuro */
+  width: 75%; /* Ocupa el 75% del ancho de la pantalla */
+  height: 100vh; /* Altura 100% absoluta, de arriba a abajo */
+  background: var(--Negro_Suave);
+  border-left: 1px solid var(--Blanco);
+  
+  /* PADDING: 72px (para compensar el espacio del header) + 48px de tu diseño = 120px arriba */
+  padding: 120px 24px 48px 24px;
+  box-sizing: border-box; /* Fundamental para que el padding no desborde la pantalla */
+  
+  display: flex;
+  flex-direction: column;
+  
+  /* Animación: lo escondemos 100% a la derecha */
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-overlay.is-active .mobile-panel {
+  transform: translateX(0); /* Entra en escena */
+}
+
+.mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.menu-link {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -0.32px;
+  text-decoration: none;
+  /* Hemos quitado el color: transparent y el text-shadow */
+  transition: opacity 0.2s ease, transform 0.2s ease; 
+}
+
+/* Aunque las clases se sigan llamando "outline-", ahora las usamos para el relleno sólido
+   así no tienes que ir a cambiar el HTML de ninguna página */
+.menu-link.outline-green { 
+  color: var(--Verde_Acido); 
+  -webkit-text-stroke: 0; /* Lo reseteamos por si acaso */
+}
+
+.menu-link.outline-white { 
+  color: var(--Blanco); 
+  -webkit-text-stroke: 0;
+}
+
+/* Detalle brutalista para el hover/toque en móvil: un pequeño salto y cambio de opacidad */
+.menu-link.outline-green:active, .menu-link.outline-green:hover,
+.menu-link.outline-white:active, .menu-link.outline-white:hover { 
+  opacity: 0.7;
+  transform: translateX(8px); /* Un pequeño desplazamiento a la derecha al tocar */
+}
+
+
+
+/* =========================================
+   PÁGINA: FUNCIONES (DOCUMENTACIÓN)
+   ========================================= */
+
+.docs-layout {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  align-items: stretch; /* Ambas columnas miden lo mismo de alto */
+}
+
+/* --- BARRA LATERAL --- */
+.docs-sidebar {
+  width: 320px; /* Ancho fijo para el menú lateral */
+  flex-shrink: 0;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  padding: 32px 0; /* Padding vertical, el horizontal lo llevan los items para el hover completo */
+  display: flex;
+  flex-direction: column;
+  gap: 48px; /* Espacio entre los grupos (Versiones y Funciones) */
+}
+
+.docs-title {
+  padding: 0 32px; /* Alineado con el texto de los links */
+  margin-bottom: 24px;
+}
+
+.docs-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.docs-link {
+  display: block;
+  padding: 16px 32px;
+  text-decoration: none;
+  border-left: 4px solid transparent; /* Preparado para la barra blanca invisible */
+  transition: all 0.2s ease;
+}
+
+.docs-link:hover {
+  background: var(--Negro_Suave-Hover);
+  border-left-color: rgba(255, 255, 255, 0.3); /* Un blanco sutil al pasar el ratón */
+}
+
+/* El estado activo según tu diseño */
+.docs-link.active {
+  background: var(--Negro_Suave-Hover);
+  color: var(--Verde_Acido);
+  border-left-color: var(--Blanco); /* La barra blanca sólida a la izquierda */
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.docs-content {
+  flex: 1;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px; /* Separación grande entre cada bloque de función */
+}
+
+.docs-item {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =========================================
+   MEDIA QUERIES - MOBILE (<= 1024px)
+   ========================================= */
+@media (max-width: 1024px) {
+  /* Añade esto dentro de tu media query existente */
+  
+  .docs-layout {
+    flex-direction: column; /* En móvil, la barra lateral pasa arriba y el contenido abajo */
+    gap: 24px;
+  }
+  
+  .docs-sidebar {
+    width: 100%;
+    padding: 24px 0;
+    gap: 32px;
+  }
+  
+  .docs-content {
+    padding: 32px 16px;
+    gap: 48px;
+  }
+}
+
+/* =========================================
+   PÁGINA: FUNCIONES (VERSIÓN WEB)
+   ========================================= */
+
+.docs-layout {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* --- MENÚ LATERAL --- */
+.sidebar {
+  display: flex;
+  width: 400px;
+  /* Eliminamos el height: 1024px fijo para que crezca con el contenido o se adapte */
+  min-height: 100vh; 
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  flex-shrink: 0;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  position: sticky; /* Hacemos que se quede pegado al hacer scroll en PC */
+  top: 16px; 
+}
+
+.sidebar__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+/* El borde gordo blanco para el grupo de Funciones */
+.group-funciones {
+  padding-left: 24px;
+  border-left: 4px solid var(--Blanco);
+}
+
+.sidebar__title-box {
+  display: flex;
+  padding: 24px;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+/* Enlaces del menú lateral */
+.sidebar__link {
+  display: flex;
+  padding: 8px 0 8px 36px;
+  align-items: center;
+  align-self: stretch;
+  text-decoration: none;
+  color: var(--Blanco);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap; /* Evita que el texto salte de línea en móvil */
+}
+
+/* Estados Hover y Active */
+.sidebar__link:hover:not(.disabled) {
+  background: var(--Negro_Suave-Hover);
+}
+
+.sidebar__link.active,
+.sidebar__link.active-tab {
+  background: var(--Negro_Suave-Hover);
+  color: var(--Verde_Acido);
+}
+
+.sidebar__link.disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* --- EXPLORADOR --- */
+.explorer {
+  display: flex;
+  /* Eliminamos el height: 1024px fijo */
+  min-height: 100vh;
+  padding: 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  flex: 1 0 0;
+  border: var(--border-style);
+  background: var(--Negro_Suave);
+  /* Ya no necesitamos overflow-y aquí porque el scroll lo hará la página entera */
+}
+
+/* Contenedores de las pestañas */
+.explorer__content {
+  display: none;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+}
+
+.explorer__content.active {
+  display: flex;
+  animation: fadeIn 0.3s ease; /* Rescatamos tu animación sutil */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.explorer__block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+
+/* =========================================
+   MEDIA QUERIES - MOBILE (<= 1024px) PÁGINA FUNCIONES
+   ========================================= */
+@media (max-width: 1024px) {
+  .docs-layout {
+    flex-direction: column; /* Apilamos sidebar sobre explorador */
+    gap: 0; /* Quitamos gap para que la barra se pegue al explorador si quieres, o déjalo a 16px */
+  }
+
+  /* Transformamos el sidebar en un scroll horizontal */
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    position: relative; /* Ya no es sticky en móvil */
+    top: auto;
+    overflow-x: auto; /* Permite scroll horizontal */
+    /* Estilos para ocultar la barra de scroll en móviles si quieres que quede más limpio */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Ocultamos títulos y grupos que ensucian el menú horizontal */
+  .sidebar__title-box,
+  .sidebar__group > .sidebar__link:not(.tab-btn) { /* Oculta enlaces de Versiones, deja solo tabs */
+     display: none; 
+  }
+
+  .sidebar__group {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .group-funciones {
+    padding-left: 0;
+    border-left: none; /* Quitamos el borde gordo en móvil */
+  }
+
+  .sidebar__link {
+    padding: 12px 24px; /* Parecidos a botones */
+    border: 1px solid var(--Negro_Suave-Hover); /* Un bordecito sutil */
+  }
+  
+  .sidebar__link.active-tab {
+    border-color: var(--Verde_Acido); /* Resaltamos el borde al estar activo */
+  }
+
+  .explorer {
+    width: 100%;
+    padding: 24px; /* Menos padding en móvil */
+    min-height: auto;
+  }
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR (Estilo Aerko_)
+   ========================================= */
+
+/* Afecta al explorador (y a cualquier cosa con scroll en la web) */
+.explorer::-webkit-scrollbar {
+  width: 12px; /* Una barra gordita y contundente */
+}
+
+.explorer::-webkit-scrollbar-track {
+  background: var(--Negro_Suave); 
+  border-left: 1px solid var(--Blanco); /* Separador sutil */
+}
+
+.explorer::-webkit-scrollbar-thumb {
+  background: var(--Verde_Acido); /* El pulgar de scroll en nuestro verde neón */
+  border: 1px solid var(--Negro_Suave); /* Borde para que respire */
+}
+
+.explorer::-webkit-scrollbar-thumb:hover {
+  background: var(--Verde_Acido-Hover);
+}
